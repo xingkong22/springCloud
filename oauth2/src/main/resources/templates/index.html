@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+我是index啊！！！！！这个页面没有受保护，可直接访问
+<br/>
+<div th:fragment="logout" sec:authorize="isAuthenticated()">
+    登陆用户:<span sec:authentication="principal.getUsername()"></span>
+    登陆角色:<span sec:authentication="principal.getAuthorities()"></span>
+    <div>
+        <form action="#" th:action="@{/logout}" method="post">
+            <input type="submit" value="退出" />
+        </form>
+    </div>
+</div>
+
+<ul>
+    <li>点击<a href="/user/index" th:href="@{/user/index}">去/user/index 已被保护的页面</a></li>
+    <li>点击<a href="/blogs/index" th:href="@{/blogs/index}">去/blogs/index 已被保护的页面</a></li>
+</ul>
+</body>
+</html>

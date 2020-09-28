@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:substituteby="index::logout"></div>
+    <h1>这个页面是受保护的页面</h1>
+    <p><a th:href="@{/index}" href="/index">返回首页</a></p>
+    <p><a th:href="@{/blogs}" href="/blogs">管理博客</a></p>
+</body>
+</html>

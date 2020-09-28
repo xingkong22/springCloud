@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <script th:src="@{/caller/common/jquery-1.9.1.js}" type="text/javascript"></script>
+    <script th:src="@{/caller/common/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{/caller/common/jquery-1.8.2.min.js}" type="text/javascript"></script>
+    <script th:src="@{/caller/common/jquery.cookie.js}" type="text/javascript"></script>
+    <script th:src="@{/caller/common/getPath.js}" type="text/javascript"></script>
+    <script th:src="@{/caller/common/jquery.form.js}" type="text/javascript"></script>
+    <script th:src="@{/caller/common/upload/diyUpload.js}" type="text/javascript"></script>
+    <script th:src="@{/caller/common/upload/webuploader.min.js}" type="text/javascript"></script>
+
+    <script th:src="@{/caller/js/index.js}" type="text/javascript"></script>
+
+    <script th:src="@{/caller/js/video.min.js}" type="text/javascript"></script>
+    <script th:src="@{/caller/js/ckplayer.js}" type="text/javascript"></script>
+    <script th:src="@{/caller/js/slideBox.min.js}" type="text/javascript"></script>
+    <script th:src="@{/caller/js/slideBox.js}" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/caller/css/diyUpload.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/caller/css/slideBox.css}"/>
+
+    <style>
+    </style>
+
+</head>
+<body>
+<div style="width: 50%; height: 50%;">
+    <hr>
+    请输入验证码:<input type="text" id="num" name="num"/>
+    <a href="javascript:getVerifiCode()">
+        <img id="yzm_img" style="cursor:pointer;width: 100px;height: 36px;margin: 5px 0 0 5px;border-radius: 3px;"
+             title="点击刷新验证码" src="/provider/provider/code"/>
+    </a><br/>
+    <button id="button">获取值</button>
+    <hr>
+    <button id="eWMa">获取二维码</button>
+    <br>
+    <img id="eWMa_img"
+         style="cursor:pointer;width: 175px;height: 175px;margin: 5px 0 0 5px;border-radius: 3px; border: 1px solid #ccc;"
+         src=""/>
+    <hr>
+    读取二维码：<input type="file" name="fileEWMa" id="fileEWMa">
+    <button id="subFileEWMa">上传</button>
+    <br/>
+    <img style="width: 150px; height: 150px; display: none;" id="imgHidden"/>
+    <span style="display: none;" id="showResult"></span>
+    <hr>
+    上传图片：<input type="file" name="fileImg" id="fileImg" multiple="multiple">
+    <button id="subFileImg">上传</button>
+    <br/>
+    <img style="width: 150px; height: 150px; display: none;" id="uploadImgHidden"/>
+</div>
+
+<form id="editForm" enctype="multipart/form-data" method="post" action="">
+    <div>
+        <span class="">基地：</span>
+        <input id="basename" name="basename"/>
+        <span class="">农事计划：</span>
+        <input id="nsjh" name="nsjh"/>
+    </div>
+    <div>
+        <span class="" style="display: block;">上传：</span>
+        <ul class="upload-ul clearfix">
+            <li class="upload-pick">
+                <div class="webuploader-container clearfix" id="goodsUpload"></div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mr20 mt5 mb5 fr" id="saveBtnDiv">
+        <span class="btn2" id="saveBtn" style="cursor: pointer;">保存</span>
+    </div>
+</form>
+
+
+<div id="video" style="width:550px; height:420px;"></div>
+<script type="text/javascript">
+    var videoObject = {
+        container: '#video',//“#”代表容器的ID，“.”或“”代表容器的class
+        variable: 'player',//该属性必需设置，值等于下面的new chplayer()的对象
+        flashplayer: false,//如果强制使用flashplayer则设置成true
+        allowFullScreen: true,//是否支持全屏
+        loaded: 'loadedHandlerVga', //当播放器加载后执行的函数
+        video: {
+            file: getRealPath() + '/upload/7f4.mp4',//视频地址
+            type: 'video/mp4'
+        }
+    };
+    var player = new ckplayer(videoObject);
+    playerVga = new ckplayer(videoObject);
+
+    //playHandler 状态下为调用该函数监听当前播放是否开始
+    playHandler = function (time) {
+        console.log('当前播放是否开始？：' + "已开始");
+    };
+
+    //endedHandler 状态下为调用该函数监听当前播放是否结束
+    endedHandler = function (time) {
+        console.log('当前播放是否结束？：' + '已结束');
+    };
+
+    //此处必须是挂载在全局才被调用 函数加载
+    loadedHandlerVga = function () {
+        playerVga.addListener('play', playHandler);
+        playerVga.addListener('ended', endedHandler);
+    }
+</script>
+
+
+<h3>一、左右轮播，滚动持续0.6秒，滚动延迟3秒，滚动效果swing，初始焦点第1张，点选按键自动隐藏，按键边框半径（IE8-只方不圆）5px（以上各项为默认设置值）</h3>
+<div id="demo1" class="slideBox">
+    <ul class="items">
+        <li><a href="https://www.jb51.net/" title="这里是测试标题一"><img src="/caller/upload/1.png"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题二"><img src="/caller/upload/2.png"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题三"><img src="/caller/upload/3.jpeg"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题四"><img src="/caller/upload/4.jpg"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题五"><img src="/caller/upload/5.jpg"></a></li>
+    </ul>
+</div>
+<h3>二、上下轮播，滚动持续0.3秒，滚动延迟5秒，滚动效果linear，初始焦点第2张，点选按键自动隐藏</h3>
+<div id="demo2" class="slideBox">
+    <ul class="items">
+        <li><a href="https://www.jb51.net/" title="这里是测试标题一"><img src="/caller/upload/1.png"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题二"><img src="/caller/upload/2.png"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题三"><img src="/caller/upload/3.jpeg"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题四"><img src="/caller/upload/4.jpg"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题五"><img src="/caller/upload/5.jpg"></a></li>
+    </ul>
+</div>
+<h3>三、左右轮播，滚动持续0.3秒，滚动延迟5秒，滚动效果linear，初始焦点第1张，点选按键不隐藏，按键边框半径10px（圆形）</h3>
+<div id="demo3" class="slideBox">
+    <ul class="items">
+        <li><a href="https://www.jb51.net/" title="这里是测试标题一"><img src="/caller/upload/1.png"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题二"><img src="/caller/upload/2.png"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题三"><img src="/caller/upload/3.jpeg"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题四"><img src="/caller/upload/4.jpg"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题五"><img src="/caller/upload/5.jpg"></a></li>
+    </ul>
+</div>
+<h3>四、隐藏底栏</h3>
+<div id="demo4" class="slideBox">
+    <ul class="items">
+        <li><a href="https://www.jb51.net/" title="这里是测试标题一"><img src="/caller/upload/1.png"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题二"><img src="/caller/upload/2.png"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题三"><img src="/caller/upload/3.jpeg"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题四"><img src="/caller/upload/4.jpg"></a></li>
+        <li><a href="https://www.jb51.net/" title="这里是测试标题五"><img src="/caller/upload/5.jpg"></a></li>
+    </ul>
+</div>
+<script>
+    jQuery(function ($) {
+        $('#demo1').slideBox();
+        $('#demo2').slideBox({
+            direction: 'top',//left,top#方向
+            duration: 0.3,//滚动持续时间，单位：秒
+            easing: 'linear',//swing,linear//滚动特效
+            delay: 5,//滚动延迟时间，单位：秒
+            startIndex: 1//初始焦点顺序
+        });
+        $('#demo3').slideBox({
+            duration: 0.3,//滚动持续时间，单位：秒
+            easing: 'linear',//swing,linear//滚动特效
+            delay: 5,//滚动延迟时间，单位：秒
+            hideClickBar: false,//不自动隐藏点选按键
+            clickBarRadius: 10
+        });
+        $('#demo4').slideBox({
+            hideBottomBar: true//隐藏底栏
+        });
+    });
+</script>
+
+
+</body>
+</html>

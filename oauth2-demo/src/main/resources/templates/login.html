@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆页</title>
+    <script th:src="@{/oauth-server/common/jquery-1.9.1.js}" type="text/javascript"></script>
+    <script th:src="@{/oauth-server/common/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{/oauth-server/common/jquery-1.8.2.min.js}" type="text/javascript"></script>
+    <script th:src="@{/oauth-server/common/jquery.cookie.js}" type="text/javascript"></script>
+    <script th:src="@{/oauth-server/common/getPath.js}" type="text/javascript"></script>
+    <script th:src="@{/oauth-server/common/jquery.form.js}" type="text/javascript"></script>
+</head>
+<body>
+    <div>
+        用户名：<input id="username" name="username" type="text"/><br/>
+        密码：<input id="password" name="password" type="password"/><br/>
+        <button id="login">登陆</button>
+    </div>
+</body>
+<script>
+    $(function () {
+        $("#login").click(function () {
+            var username = $("#username").val();
+            var password = $("#password").val();
+            var url = getBaseUrl() + '/oauthServer/demo/doLogin';
+            var parm = {username : username, password : password};
+            $.ajax({
+                url : url,
+                data : parm,
+                type : 'post',
+                contentType : 'application/x-www-form-urlencoded',
+                success: function (d) {
+                    console.log("d:" + d);
+                    if(d.code == "1"){
+                        console.log("d:" + d.access_token);
+                        $.cookie('token', d.access_token, { path: '/'});
+                        sessionStorage.setItem("token", d.access_token);
+                        window.location.href = getBaseUrl() + "/oauthServer/pageIndex/index";
+                    }
+                }
+            })
+        })
+    })
+</script>
+</html>

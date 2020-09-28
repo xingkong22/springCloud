@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h2>权限不够</h2>
+        </div>
+
+        <div sec:authorize="isAuthenticated()">
+            <p>已有用户登陆</p>
+            <p>登陆用户:<span sec:authentication="principal.getUsername()"></span></p>
+            <p>登陆角色:<span sec:authentication="principal.getAuthorities()"></span></p>
+        </div>
+
+        <div sec:authorize="isAnonymous()">
+            <p>未有用户登陆</p>
+        </div>
+        <p>拒绝访问</p>
+        <p><a th:href="@{/index}" href="/index">返回首页</a></p>
+        <div>
+            <form action="#" th:action="@{/logout}" method="post">
+                <input type="submit" value="退出" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>
