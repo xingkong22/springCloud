@@ -69,17 +69,25 @@ public class DemoController {
             params.put("client_secret", "client_secret");
             params.put("scope", "scope");//应用程序 作用域 !!!!
 
-            String backTokenUrl = "http://172.11.1.154:10008/oauth/token";
+            String backTokenUrl = "http://localhost:10008/oauth/token";
             returnCode = Oauth2Post.AuthHttpPost(backTokenUrl, params);
-            JSONObject jsonObject = JSONObject.parseObject(returnCode);
-            String access_token = jsonObject.get("access_token").toString();
-            System.out.println("access_token:" + access_token);
 
-            request.getSession().setAttribute("token", access_token);
+            if(null != returnCode && !"".equals(returnCode)){
+                JSONObject jsonObject = JSONObject.parseObject(returnCode);
+                String access_token = jsonObject.get("access_token").toString();
+                System.out.println("access_token:" + access_token);
 
-            map.put("access_token", access_token);
-            map.put("code", 1);
-            map.put("msg", "登陆成功");
+                request.getSession().setAttribute("token", access_token);
+
+                map.put("access_token", access_token);
+                map.put("code", 1);
+                map.put("msg", "登陆成功");
+            }else{
+                map.put("access_token", "");
+                map.put("code", 0);
+                map.put("msg", "登陆失败");
+            }
+
         }catch (Exception e){
             e.printStackTrace();
         }
