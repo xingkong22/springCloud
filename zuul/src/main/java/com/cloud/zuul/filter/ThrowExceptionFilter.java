@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  **/
 @Component
 public class ThrowExceptionFilter extends ZuulFilter {
+
+    private static final String ERROR_STATUS_CODE_KEY = "error.status_code";
+
     private static Logger log = LoggerFactory.getLogger(ThrowExceptionFilter.class);
 
     @Override
@@ -39,7 +42,8 @@ public class ThrowExceptionFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        return false;
+        RequestContext ctx = RequestContext.getCurrentContext();
+        return ctx.containsKey(ERROR_STATUS_CODE_KEY);
     }
 
     @Override
@@ -51,6 +55,7 @@ public class ThrowExceptionFilter extends ZuulFilter {
         } catch (Exception e) {
             ctx.set("error.status_code", HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             ctx.set("error.exception", e);
+            ctx.set("error.message", e.getMessage());
         }
         return null;
     }

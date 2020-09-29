@@ -28,6 +28,11 @@ zuul:
       #由传统的路由模式，我们可以知道用户访问的路由路径为localhost:10215/caller，将服务映射到了http://localhost:10213
       #url: http://localhost:10213/
 
+  #禁用默认的SendErrorFilter
+  SendErrorFilter:
+    post:
+      disable: true
+
 
 security:
   auth:
