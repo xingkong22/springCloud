@@ -31,16 +31,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Spring Security OAuth2 架构上分为Authorization Server认证服务器和Resource Server资源服务器。我们可以为每一个Resource Server（一个微服务实例）设置一个resourceid。
- * Authorization Server给client第三方客户端授权的时候，可以设置这个client可以访问哪一些Resource Server资源服务，如果没设置，就是对所有的Resource Server都有访问权限
+ * @Author: Administrator
+ * @Description: TODO Spring Security OAuth2 架构上分为Authorization Server认证服务器和Resource Server资源服务器。我们可以为每一个Resource Server（一个微服务实例）设置一个resourceid。
+ *      Authorization Server给client第三方客户端授权的时候，可以设置这个client可以访问哪一些Resource Server资源服务，如果没设置，就是对所有的Resource Server都有访问权限
  *
- * 在Spring Security的FilterChain中，OAuth2AuthenticationProcessingFilter在FilterSecurityInterceptor的前面，所以会先验证client有没有此resource的权限，
- * 只有在有此resource的权限的情况下，才会再去做进一步的进行其他验证的判断
+ *      在Spring Security的FilterChain中，OAuth2AuthenticationProcessingFilter在FilterSecurityInterceptor的前面，所以会先验证client有没有此resource的权限，
+ *      只有在有此resource的权限的情况下，才会再去做进一步的进行其他验证的判断
  *
- * 作者：字母哥课堂
- * 链接：https://www.jianshu.com/p/73ee7436fe7b
- * 来源：简书
- * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+ *      作者：字母哥课堂
+ *      链接：https://www.jianshu.com/p/73ee7436fe7b
+ *      来源：简书
+ * @Date: 2020/9/30 0030 下午 4:50
+ * @Version: 1.0
  */
 @Configuration
 @Order(Integer.MIN_VALUE)
@@ -77,11 +79,14 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
         @Autowired
         private RedisConnectionFactory redisConnectionFactory;
 
-        /**
-         *
-         *  该方法定义了那些客户端将注册到服务
-         *
-         */
+        /*
+          * @Method configure
+          * @Description TODO  该方法定义了那些客户端将注册到服务
+          * @Params  * @param clients :
+          * @Author Administrator
+          * @Return void
+          * @Date 2020/9/30 0030 下午 4:54
+          */
         @Override
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
             /*
@@ -117,10 +122,14 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
             //oauth2登录异常处理
         }
 
-        /**
-         * tokenstore 定制化处理
-         * @return TokenStore
-         */
+        /*
+          * @Method redisTokenStore
+          * @Description TODO 定制化处理
+          * @Params
+          * @Author Administrator
+          * @Return org.springframework.security.oauth2.provider.token.TokenStore
+          * @Date 2020/9/30 0030 下午 4:54
+          */
         @Bean
         public TokenStore redisTokenStore() {
             RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
@@ -139,11 +148,14 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
                     .checkTokenAccess("permitAll()");//允许已授权用户访问 checkToken 接口
         }
 
-        /**
-         * @Author Pan Weilong
-         * @Description jwt加密秘钥
-         * @Date 17:58 2019/7/10
-         **/
+        /*
+          * @Method accessTokenConverter
+          * @Description TODO jwt加密秘钥
+          * @Params
+          * @Author Administrator
+          * @Return org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter
+          * @Date 2020/9/30 0030 下午 4:54
+          */
         @Bean
         public JwtAccessTokenConverter accessTokenConverter() {
             JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
@@ -151,10 +163,14 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
             return converter;
         }
 
-        /**
-         * jwt 生成token 定制化处理
-         * @return TokenEnhancer
-         */
+        /*
+          * @Method tokenEnhancer
+          * @Description TODO jwt 生成token 定制化处理
+          * @Params
+          * @Author Administrator
+          * @Return org.springframework.security.oauth2.provider.token.TokenEnhancer
+          * @Date 2020/9/30 0030 下午 4:55
+          */
         @Bean
         public TokenEnhancer tokenEnhancer() {
             return (accessToken, authentication) -> {

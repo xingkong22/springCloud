@@ -21,20 +21,20 @@ import java.nio.charset.Charset;
 import java.util.Base64;
 
 /**
- * Filter的四个方法，FilterType，filterOrder，shouldFilter，run
- *      filterType代表过滤类型
- *          PRE: 该类型的filters在Request routing到源web-service之前执行。用来实现Authentication、选择源服务地址等
- *          ROUTING：该类型的filters用于把Request routing到源web-service，源web-service是实现业务逻辑的服务。这里使用HttpClient请求web-service
- *          POST：该类型的filters在ROUTING返回Response后执行。用来实现对Response结果进行修改，收集统计数据以及把Response传输会客户端
- *          ERROR：上面三个过程中任何一个出现错误都交由ERROR类型的filters进行处理
- *          主要关注 pre、post和error。分别代表前置过滤，后置过滤和异常过滤
- *      filterOrder代表过滤器顺序
- *      shouldFilter代表这个过滤器是否生效
- *      Run方法
- *          这个是主要的处理逻辑的地方，我们做权限控制、日志等都是在这里
- *
+ * @Author: Administrator
+ * @Description: TODO Filter的四个方法，FilterType，filterOrder，shouldFilter，run
+ *              filterType代表过滤类型
+ *                  PRE: 该类型的filters在Request routing到源web-service之前执行。用来实现Authentication、选择源服务地址等
+ *                  ROUTING：该类型的filters用于把Request routing到源web-service，源web-service是实现业务逻辑的服务。这里使用HttpClient请求web-service
+ *                  POST：该类型的filters在ROUTING返回Response后执行。用来实现对Response结果进行修改，收集统计数据以及把Response传输会客户端
+ *                  ERROR：上面三个过程中任何一个出现错误都交由ERROR类型的filters进行处理
+ *                  主要关注 pre、post和error。分别代表前置过滤，后置过滤和异常过滤
+ *              filterOrder代表过滤器顺序
+ *              shouldFilter代表这个过滤器是否生效
+ *              Run方法是主要的处理逻辑的地方，我们做权限控制、日志等都是在这里
+ * @Date: 2020/9/30 0030 下午 4:50
+ * @Version: 1.0
  */
-//@Configuration
 @Component
 public class AccessTokenFilter extends ZuulFilter {
 
@@ -48,13 +48,17 @@ public class AccessTokenFilter extends ZuulFilter {
         return true;
     }
 
-    /**
-     * 本拦截器任务
-     *  1、拦截所有访问。
-     *  2、获取Token。
-     *  3、把token加到headers中Authorization : Bearer $('token_info')，以便OAUTH2服务端验证。
-     * @return
-     */
+    /*
+      * @Method run
+      * @Description TODO 本拦截器任务
+      *         1、拦截所有访问。
+      *         2、获取Token。
+      *         3、把token加到headers中Authorization : Bearer $('token_info')，以便OAUTH2服务端验证。
+      * @Params
+      * @Author Administrator
+      * @Return java.lang.Object
+      * @Date 2020/9/30 0030 下午 5:12
+      */
     @Override
     public Object run() {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();

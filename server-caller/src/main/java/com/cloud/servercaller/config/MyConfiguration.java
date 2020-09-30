@@ -6,8 +6,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
- * springboot访问本地路径获取图片
- * 通过映射可以直接获取图片
+ * @Author: Administrator
+ * @Description: TODO springboot访问本地路径获取图片 通过映射可以直接获取图片
+ * @Date: 2020/9/30 0030 下午 4:50
+ * @Version: 1.0
  */
 @Configuration
 public class MyConfiguration extends WebMvcConfigurerAdapter {

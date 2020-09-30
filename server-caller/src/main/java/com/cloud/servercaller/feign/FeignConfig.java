@@ -9,9 +9,12 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Feign调用出现权限问题 feign.FeignException$Unauthorized: [401] during [GET] to[....]
- * 这种情况为没有认证就请求了资源服务器的资源，解决办法为使用Feign的时候把请求的认证信息传递过去，或者资源服务那边开放一些接口。
- * 不过开放接口的话情况有点多，所以就选择把token携带过去了。feign提供了一个名为RequestInterceptor得拦截器，可以在请求的时候指定请求头
+ * @Author: Administrator
+ * @Description: TODO Feign调用出现权限问题 feign.FeignException$Unauthorized: [401] during [GET] to[....]
+ *              这种情况为没有认证就请求了资源服务器的资源，解决办法为使用Feign的时候把请求的认证信息传递过去，或者资源服务那边开放一些接口。
+ *              不过开放接口的话情况有点多，所以就选择把token携带过去了。feign提供了一个名为RequestInterceptor得拦截器，可以在请求的时候指定请求头
+ * @Date: 2020/9/30 0030 下午 4:50
+ * @Version: 1.0
  */
 @Configuration
 public class FeignConfig implements RequestInterceptor {

@@ -16,14 +16,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 1.获取token
- * http://localhost:10008/oauth/token?grant_type=password&username=hello&password=hello&client_id=client_id&client_secret=client_secret&scope=scope
+ * @Author: Administrator
+ * @Description: TODO
+ *  1.获取token
+ *  http://localhost:10008/oauth/token?grant_type=password&username=hello&password=hello&client_id=client_id&client_secret=client_secret&scope=scope
  *
- * 2.获取到access_token 后。添加到请求头中，访问接口
- * http://localhost:10008/hello?access_token=as5d45asdasd4as551asd98as7d6xc2v15
+ *  2.获取到access_token 后。添加到请求头中，访问接口
+ *  http://localhost:10008/hello?access_token=as5d45asdasd4as551asd98as7d6xc2v15
  *
- * 3.用refresh_token 换取新的token
- * http://localhost:10008/oauth/token?grant_type=refresh_token&username=hello&password=hello&client_id=client_id&client_secret=client_secret&scope=scope&refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsaWNlbnNlIjoidmNsb3VkIiwiYXVkIjpbInZjbG91ZCJdLCJ1c2VyX25hbWUiOiJoZWxsbyIsInNjb3BlIjpbInNjb3BlIl0sImF0aSI6IjVmNDQ3Njk2LTY3YTgtNDIyZi04ZmNmLWIwYWYxZmRmOTE5ZSIsImV4cCI6MTYwMTc5OTg2NCwidXNlcklkIjoxLCJqdGkiOiI2ZTM0ZDcxYi1kNWRlLTRhNDItOTM3Yy1iMjBlODViMmI1YmYiLCJjbGllbnRfaWQiOiJjbGllbnRfaWQifQ.VAfdSvQV6SjVR07IgDP6T2DhiRoNvdu3RgNfRviFJe4
+ *  3.用refresh_token 换取新的token
+ *  http://localhost:10008/oauth/token?grant_type=refresh_token&username=hello&password=hello&client_id=client_id&client_secret=client_secret&scope=scope&refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsaWNlbnNlIjoidmNsb3VkIiwiYXVkIjpbInZjbG91ZCJdLCJ1c2VyX25hbWUiOiJoZWxsbyIsInNjb3BlIjpbInNjb3BlIl0sImF0aSI6IjVmNDQ3Njk2LTY3YTgtNDIyZi04ZmNmLWIwYWYxZmRmOTE5ZSIsImV4cCI6MTYwMTc5OTg2NCwidXNlcklkIjoxLCJqdGkiOiI2ZTM0ZDcxYi1kNWRlLTRhNDItOTM3Yy1iMjBlODViMmI1YmYiLCJjbGllbnRfaWQiOiJjbGllbnRfaWQifQ.VAfdSvQV6SjVR07IgDP6T2DhiRoNvdu3RgNfRviFJe4
+ * @Date: 2020/9/30 0030 下午 4:50
+ * @Version: 1.0
  */
 @Controller
 @RequestMapping("/demo")
@@ -94,9 +98,14 @@ public class DemoController {
         return map;
     }
 
-    /**
-     * 退出登录,并清除token
-     **/
+    /*
+      * @Method removeToken
+      * @Description TODO 退出登录,并清除token
+      * @Params  * @param access_token :
+      * @Author Administrator
+      * @Return java.lang.Boolean
+      * @Date 2020/9/30 0030 下午 4:57
+      */
     @GetMapping("/removeToken")
     @ResponseBody
     public Boolean removeToken(@Param(value = "access_token") String access_token){

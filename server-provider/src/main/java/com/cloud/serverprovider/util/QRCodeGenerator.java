@@ -24,16 +24,17 @@ public class QRCodeGenerator {
 
     public static final String QR_CODE_IMAGE_PATH = "F://MyQRCode.png";
 
-    /**
-     * 生成二维码
-     *
-     * @param text
-     * @param width
-     * @param height
-     * @param filePath
-     * @throws WriterException
-     * @throws IOException
-     */
+    /*
+      * @Method generateQRCodeImage
+      * @Description TODO 生成二维码
+      * @Params  * @param text :
+     * @param width :
+     * @param height :
+     * @param filePath :
+      * @Author Administrator
+      * @Return void
+      * @Date 2020/9/30 0030 下午 5:08
+      */
     public static void generateQRCodeImage(String text, int width, int height, String filePath) throws WriterException, IOException {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = servletRequestAttributes.getRequest();

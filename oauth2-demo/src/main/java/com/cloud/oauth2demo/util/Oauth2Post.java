@@ -66,12 +66,15 @@ public class Oauth2Post {
         return access_token;
     }
 
-    /**
-     * 登陆获取token
-     * @param url
-     * @param params
-     * @return
-     */
+    /*
+      * @Method AuthHttpPost
+      * @Description TODO 登陆获取token
+      * @Params  * @param url :
+     * @param params :
+      * @Author Administrator
+      * @Return java.lang.String
+      * @Date 2020/9/30 0030 下午 4:58
+      */
     public static String AuthHttpPost(String url,Map<String,String> params) {
         RequestConfig config = RequestConfig.custom().setConnectTimeout(60000).setSocketTimeout(15000).build();
         CloseableHttpClient httpClient = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
@@ -130,11 +133,15 @@ public class Oauth2Post {
         return result;
     }
 
-    /**
-     * 构造Basic Auth认证头信息
-     *
-     * @return
-     */
+    /*
+      * @Method getHeader
+      * @Description TODO 构造Basic Auth认证头信息
+      * @Params  * @param clientId :
+     * @param clientSecret :
+      * @Author Administrator
+      * @Return java.lang.String
+      * @Date 2020/9/30 0030 下午 4:58
+      */
     private static String getHeader(String clientId, String clientSecret) {
         String auth = clientId + ":" + clientSecret;
         byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
@@ -142,14 +149,15 @@ public class Oauth2Post {
         return authHeader;
     }
 
-
-    /**
-     * @Description: 注销登录功能专用
-     * @param:
-     * @return:
-     * @auther:
-     * @date:
-     */
+    /*
+      * @Method AuthHttpDelete
+      * @Description TODO 注销登录功能专用 暂时没用到
+      * @Params  * @param url :
+     * @param params :
+      * @Author Administrator
+      * @Return java.lang.String
+      * @Date 2020/9/30 0030 下午 4:58
+      */
     public static String AuthHttpDelete(String url,Map<String,String> params) {
         RequestConfig config = RequestConfig.custom().setConnectTimeout(60000).setSocketTimeout(15000).build();
         CloseableHttpClient httpClient = HttpClientBuilder.create().setDefaultRequestConfig(config).build();

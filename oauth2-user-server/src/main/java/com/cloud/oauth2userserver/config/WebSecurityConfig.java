@@ -28,11 +28,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    /**
-     * 配置了读取用户认证信息的方式
-     * @param auth
-     * @throws Exception
-     */
+    /*
+      * @Method configureGlobal
+      * @Description TODO 配置了读取用户认证信息的方式
+      * @Params  * @param auth :
+      * @Author Administrator
+      * @Return void
+      * @Date 2020/9/30 0030 下午 4:59
+      */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         //不加.passwordEncoder(new MyPasswordEncoder())
@@ -52,11 +55,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    /**
-     * 配置请求认证的规则
-     * @param httpSecurity
-     * @throws Exception
-     */
+    /*
+      * @Method configure
+      * @Description TODO 配置请求认证的规则
+      * @Params  * @param httpSecurity :
+      * @Author Administrator
+      * @Return void
+      * @Date 2020/9/30 0030 下午 5:00
+      */
     public void configure(HttpSecurity httpSecurity) throws Exception{
 //        httpSecurity
 //                .authorizeRequests()

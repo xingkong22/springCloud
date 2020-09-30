@@ -11,12 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * @名称  ErrorFilter
- * @描述  异常处理
- * @参数  
- * @返回值 
- * @作者 hanlei
- * @时间 2018-8-28 11:30
+ * @Author: Administrator
+ * @Description: TODO 异常处理
+ * @Date: 2020/9/30 0030 下午 4:50
+ * @Version: 1.0
  */
 @Component
 public class ErrorFilter extends ZuulFilter {

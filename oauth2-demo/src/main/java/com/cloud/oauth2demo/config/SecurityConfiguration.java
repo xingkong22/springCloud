@@ -16,9 +16,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    /**
-     * 这一步的配置是必不可少的，否则SpringBoot会自动配置一个AuthenticationManager,覆盖掉内存中的用户
-     */
+    /*
+      * @Method authenticationManagerBean
+      * @Description TODO 这一步的配置是必不可少的，否则SpringBoot会自动配置一个AuthenticationManager,覆盖掉内存中的用户
+      * @Params
+      * @Author Administrator
+      * @Return org.springframework.security.authentication.AuthenticationManager
+      * @Date 2020/9/30 0030 下午 4:55
+      */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -26,21 +31,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return manager;
     }
 
-    /**
-     * @Date 14:35 2019/7/11
-     * @Param [不用加密]
-     * @return org.springframework.security.crypto.password.PasswordEncoder
-     **/
+    /*
+      * @Method passwordEncoder
+      * @Description TODO [不用加密]
+      * @Params
+      * @Author Administrator
+      * @Return org.springframework.security.crypto.password.PasswordEncoder
+      * @Date 2020/9/30 0030 下午 4:55
+      */
     @Bean
     public static PasswordEncoder passwordEncoder(){
         return NoOpPasswordEncoder.getInstance();
     }
 
-    /**
-     * 配置请求认证的规则
-     * @param httpSecurity
-     * @throws Exception
-     */
+    /*
+      * @Method configure
+      * @Description TODO 配置请求认证的规则
+      * @Params  * @param httpSecurity :
+      * @Author Administrator
+      * @Return void
+      * @Date 2020/9/30 0030 下午 4:55
+      */
     public void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity
                 .authorizeRequests()

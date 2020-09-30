@@ -18,11 +18,14 @@ public class ImageVerificationCode {
     //验证码数组
     private String codes = "23456789abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ";
 
-    /**
-     * 获取随机的颜色
-     *
-     * @return
-     */
+    /*
+      * @Method randomColor
+      * @Description TODO 获取随机的颜色
+      * @Params
+      * @Author Administrator
+      * @Return java.awt.Color
+      * @Date 2020/9/30 0030 下午 5:09
+      */
     private Color randomColor() {
         int r = this.r.nextInt(225);  //这里为什么是225，因为当r，g，b都为255时，即为白色，为了好辨认，需要颜色深一点。
         int g = this.r.nextInt(225);
@@ -30,11 +33,15 @@ public class ImageVerificationCode {
         return new Color(r, g, b);            //返回一个随机颜色
     }
 
-    /**
-     * 获取随机字体
-     *
-     * @return
-     */
+
+    /*
+      * @Method randomFont
+      * @Description TODO 获取随机字体
+      * @Params
+      * @Author Administrator
+      * @Return java.awt.Font
+      * @Date 2020/9/30 0030 下午 5:09
+      */
     private Font randomFont() {
         int index = r.nextInt(fontNames.length);  //获取随机的字体
         String fontName = fontNames[index];
@@ -43,21 +50,27 @@ public class ImageVerificationCode {
         return new Font(fontName, style, size);   //返回一个随机的字体
     }
 
-    /**
-     * 获取随机字符
-     *
-     * @return
-     */
+    /*
+      * @Method randomChar
+      * @Description TODO 获取随机字符
+      * @Params
+      * @Author Administrator
+      * @Return char
+      * @Date 2020/9/30 0030 下午 5:09
+      */
     private char randomChar() {
         int index = r.nextInt(codes.length());
         return codes.charAt(index);
     }
 
-    /**
-     * 画干扰线，验证码干扰线用来防止计算机解析图片
-     *
-     * @param image
-     */
+    /*
+      * @Method drawLine
+      * @Description TODO 画干扰线，验证码干扰线用来防止计算机解析图片
+      * @Params  * @param image :
+      * @Author Administrator
+      * @Return void
+      * @Date 2020/9/30 0030 下午 5:09
+      */
     private void drawLine(BufferedImage image) {
         int num = r.nextInt(10); //定义干扰线的数量
         Graphics2D g = (Graphics2D) image.getGraphics();
@@ -71,11 +84,14 @@ public class ImageVerificationCode {
         }
     }
 
-    /**
-     * 创建图片的方法
-     *
-     * @return
-     */
+    /*
+      * @Method createImage
+      * @Description TODO 创建图片的方法
+      * @Params
+      * @Author Administrator
+      * @Return java.awt.image.BufferedImage
+      * @Date 2020/9/30 0030 下午 5:09
+      */
     private BufferedImage createImage() {
         //创建图片缓冲区
         BufferedImage image = new BufferedImage(weight, height, BufferedImage.TYPE_INT_RGB);
@@ -88,11 +104,14 @@ public class ImageVerificationCode {
         return image;
     }
 
-    /**
-     * 获取验证码图片的方法
-     *
-     * @return
-     */
+    /*
+      * @Method getImage
+      * @Description TODO 获取验证码图片的方法
+      * @Params
+      * @Author Administrator
+      * @Return java.awt.image.BufferedImage
+      * @Date 2020/9/30 0030 下午 5:09
+      */
     public BufferedImage getImage() {
         BufferedImage image = createImage();
         Graphics2D g = (Graphics2D) image.getGraphics(); //获取画笔
@@ -111,11 +130,14 @@ public class ImageVerificationCode {
         return image;
     }
 
-    /**
-     * 获取验证码文本的方法
-     *
-     * @return
-     */
+    /*
+      * @Method getText
+      * @Description TODO 获取验证码文本的方法
+      * @Params
+      * @Author Administrator
+      * @Return java.lang.String
+      * @Date 2020/9/30 0030 下午 5:10
+      */
     public String getText() {
         return text;
     }

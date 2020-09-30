@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * @类名 ThrowExceptionFilter
- * @描述 全局异常处理 testing
- * @作者 hanlei
- * @日期 2018-8-21 13:39
- **/
+ * @Author: Administrator
+ * @Description: TODO 全局异常处理 testing
+ * @Date: 2020/9/30 0030 下午 4:50
+ * @Version: 1.0
+ */
 @Component
 public class ThrowExceptionFilter extends ZuulFilter {
 
@@ -35,6 +35,14 @@ public class ThrowExceptionFilter extends ZuulFilter {
      * @作者 hanlei
      * @时间 2018-8-21 13:42
      */
+    /*
+      * @Method filterOrder
+      * @Description TODO return 3, 排在其他两个拦截器之后
+      * @Params
+      * @Author Administrator
+      * @Return int
+      * @Date 2020/9/30 0030 下午 5:14
+      */
     @Override
     public int filterOrder() {
         return 3;
