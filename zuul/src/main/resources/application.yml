@@ -42,8 +42,8 @@ security:
     server: http://127.0.0.1:10008
   oauth2:
     client:
-      client-id: client_id
-      client-secret: client_secret
+      client-id: client_id #此配置目前在oauth2项目里，OAuth2ServerConfig类里写死的
+      client-secret: client_secret #此配置目前在oauth2项目里，OAuth2ServerConfig类里写死的
     resource:
       loadBalanced: true
       token-info-uri: ${security.auth.server}/oauth/check_token #auth服务中验证token
