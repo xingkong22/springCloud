@@ -178,6 +178,7 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
                 final Map<String, Object> additionalInfo = new HashMap<>(1);
                 additionalInfo.put("license", DEMO_RESOURCE_ID);
                 additionalInfo.put("userId" , userDto.getUserId());
+                System.out.println("userDto.getAuthorities():" + userDto.getAuthorities());
                 additionalInfo.put("roles", userDto.getRoles());
                 ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
                 //设置token的过期时间30分钟

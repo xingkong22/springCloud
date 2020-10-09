@@ -37,7 +37,9 @@ public class ErrorFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
+        //获取请求信息
         RequestContext ctx = RequestContext.getCurrentContext();
+        //获取请求信息里，是否有错误异常的代码
         return ctx.containsKey(ERROR_STATUS_CODE_KEY);
     }
 

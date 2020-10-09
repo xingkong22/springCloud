@@ -26,18 +26,16 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String DEMO_RESOURCE_ID = "vcloud";
 
-    /**
-     * @名称 configure
-     * @描述 spring security拦截器配置
-     * @参数 [http]
-     * @返回值 void
-     * @作者 hanlei
-     * @时间 2018-8-17 11:44
-     */
+    /*
+      * @Method configure
+      * @Description TODO security拦截器配置
+      * @Params  * @param http :
+      * @Author Administrator
+      * @Return void
+      * @Date 2020/10/9 0009 上午 11:58
+      */
     @Override
     public void configure(HttpSecurity http) throws Exception {
-
-
         http
             .csrf().disable()
             .exceptionHandling()
@@ -62,5 +60,4 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         resources.resourceId(DEMO_RESOURCE_ID);
         //...... 还可以有有其他的配置
     }
-
 }

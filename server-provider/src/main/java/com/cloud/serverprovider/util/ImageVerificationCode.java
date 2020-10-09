@@ -142,7 +142,8 @@ public class ImageVerificationCode {
         return text;
     }
 
-    public static void output(BufferedImage image, OutputStream out) throws IOException                  //将验证码图片写出的方法
+    //将验证码图片写出的方法
+    public static void output(BufferedImage image, OutputStream out) throws IOException
     {
         ImageIO.write(image, "JPEG", out);
     }

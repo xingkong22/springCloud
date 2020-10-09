@@ -27,14 +27,6 @@ public class ThrowExceptionFilter extends ZuulFilter {
         return "pre";
     }
 
-    /**
-     * @名称 filterOrder
-     * @描述 排在其他两个拦截器之后
-     * @参数 []
-     * @返回值 int
-     * @作者 hanlei
-     * @时间 2018-8-21 13:42
-     */
     /*
       * @Method filterOrder
       * @Description TODO return 3, 排在其他两个拦截器之后
