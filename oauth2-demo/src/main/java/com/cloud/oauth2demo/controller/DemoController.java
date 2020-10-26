@@ -81,7 +81,7 @@ public class DemoController {
                 String access_token = jsonObject.get("access_token").toString();
                 System.out.println("access_token:" + access_token);
 
-                request.getSession().setAttribute("token", access_token);
+//                request.getSession().setAttribute("token", access_token);
 
                 map.put("access_token", access_token);
                 map.put("code", 1);
@@ -106,10 +106,10 @@ public class DemoController {
       * @Return java.lang.Boolean
       * @Date 2020/9/30 0030 下午 4:57
       */
-    @GetMapping("/removeToken")
+    @PostMapping("/removeToken")
     @ResponseBody
-    public Boolean removeToken(@Param(value = "access_token") String access_token){
-        return consumerTokenServices.revokeToken(access_token);
+    public Boolean removeToken(@CookieValue(value = "token")String token){
+        return consumerTokenServices.revokeToken(token);
     }
 
     @GetMapping("/login-error")

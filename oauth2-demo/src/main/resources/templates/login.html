@@ -16,6 +16,7 @@
         用户名：<input id="username" name="username" type="text"/><br/>
         密码：<input id="password" name="password" type="password"/><br/>
         <button id="login">登陆</button>
+        <button id="logout">注销</button>
     </div>
 </body>
 <script>
@@ -38,6 +39,20 @@
                         sessionStorage.setItem("token", d.access_token);
                         window.location.href = getBaseUrl() + "/oauthServer/pageIndex/index";
                     }
+                }
+            })
+        })
+
+        $("#logout").click(function () {
+            var url = getBaseUrl() + '/oauthServer/demo/removeToken';
+            $.ajax({
+                url : url,
+                data : '',
+                type : 'post',
+                contentType : 'application/x-www-form-urlencoded',
+                success: function (d) {
+                    console.log("d:" + d);
+                    $.removeCookie('token', { path: '/'});
                 }
             })
         })
